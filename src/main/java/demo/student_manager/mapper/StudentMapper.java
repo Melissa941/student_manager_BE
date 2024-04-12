@@ -7,6 +7,7 @@ public class StudentMapper {
 
     public static StudentDto mapToStudentDto(Student student) {
         return new StudentDto(
+
                 student.getStudentNumber(),
                 student.getFirstName(),
                 student.getLastName(),
@@ -15,11 +16,13 @@ public class StudentMapper {
                 student.getCellphoneNumber(),
                 student.getCurrentScore(),
                 student.getAverageScore(),
-                student.getPastScores()
+                student.getScores()
         );
     }
+
     public static Student mapToStudent(StudentDto studentDto) {
         return new Student(
+
                 studentDto.getStudentNumber(),
                 studentDto.getFirstName(),
                 studentDto.getLastName(),
@@ -28,7 +31,7 @@ public class StudentMapper {
                 studentDto.getEmail(),
                 studentDto.getCurrentScore(),
                 studentDto.getAverageScore(),
-                studentDto.getPastScores()
+                studentDto.getScores()
         );
     }
 }
