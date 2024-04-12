@@ -13,7 +13,7 @@ public interface StudentService {
 
     List<StudentDto> getStudentByLastName(String lastName);
 
-    List<StudentDto> getStudentByEmail(String email);
+    StudentDto getStudentByEmail(String email);
 
     List<StudentDto> getAllStudents();
 

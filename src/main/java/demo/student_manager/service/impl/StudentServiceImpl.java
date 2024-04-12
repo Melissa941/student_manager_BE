@@ -57,17 +57,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDto> getStudentByEmail(String email) {
-        List<Student> students = studentRepository.findByEmailIgnoreCase(email);
-        if (students.isEmpty())
+    public StudentDto getStudentByEmail(String email) {
+
+        Student student = studentRepository.findByEmailIgnoreCase(email);
+        if (student == null) {
             throw (new ResourceNotFoundException("Student with email" + email + " not found"));
-        else
-            return students.stream().map((student) -> StudentMapper.mapToStudentDto(student))
-                    .collect(Collectors.toList());
+        }
+        return StudentMapper.mapToStudentDto(student);
     }
 
     @Override
     public List<StudentDto> getAllStudents() {
+
         List<Student> students = studentRepository.findAll();
         return students.stream().map((student) -> StudentMapper.mapToStudentDto(student))
                 .collect(Collectors.toList());
@@ -75,6 +76,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto updateStudent(String studentNumber, StudentDto updateStudent) {
+
         Student student = studentRepository.findById(studentNumber).orElseThrow(
                 () -> new ResourceNotFoundException("Student with student number " + studentNumber + " does not exist")
         );

@@ -7,7 +7,6 @@ import demo.student_manager.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @AllArgsConstructor
@@ -43,30 +42,61 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(studentNumber));
     }
 
+    /**
+     * Get all the students
+     *
+     * @return List of students
+     */
+
     @GetMapping
     public ResponseEntity<List<StudentDto>> getAllStudents() {
 
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
+    /**
+     * Get all the students with this first name
+     *
+     * @param firstName
+     * @return return students with this specific first name
+     */
     @GetMapping("/get/firstname/{firstName}")
     public ResponseEntity<List<StudentDto>> getStudentByFirstName(@PathVariable("firstName") final String firstName) {
 
         return ResponseEntity.ok(studentService.getStudentByFirstName(firstName));
     }
 
+    /**
+     * Get all the students with this lastName
+     *
+     * @param lastName
+     * @return return student with this specific lastName
+     */
     @GetMapping("/get/lastname/{lastName}")
     public ResponseEntity<List<StudentDto>> getStudentByLastName(@PathVariable("lastName") final String lastName) {
 
         return ResponseEntity.ok(studentService.getStudentByLastName(lastName));
     }
 
+    /**
+     * Get student with the specified email
+     *
+     * @param email
+     * @return student
+     */
     @GetMapping("/get/email/{email}")
-    public ResponseEntity<List<StudentDto>> getStudentByEmail(@PathVariable("email") final String email) {
+    public ResponseEntity<StudentDto> getStudentByEmail(@PathVariable("email") final String email) {
 
         return ResponseEntity.ok(studentService.getStudentByEmail(email));
     }
 
+    /**
+     * Update student details
+     *
+     * @param id
+     * @param updateStudent
+     * @return updated student details
+     */
     @PutMapping("/{id}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable("id") final String id, @RequestBody final StudentDto updateStudent) {
 
@@ -91,7 +121,7 @@ public class StudentController {
      * Get student pass score using their student number
      *
      * @param studentNumber
-     * @return
+     * @return list of student scores
      */
 
     @GetMapping("/get/score/{studentNumber}")
@@ -100,6 +130,12 @@ public class StudentController {
         return ResponseEntity.ok(studentScoreService.getScoresByStudentNumber(studentNumber));
     }
 
+    /**
+     * Delete student and student information
+     *
+     * @param studentNumber
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") final String studentNumber) {
 

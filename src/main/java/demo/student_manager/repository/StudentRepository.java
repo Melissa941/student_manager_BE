@@ -13,5 +13,5 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     List<Student> findByLastNameIgnoreCase(String lastName);
 
-    List<Student> findByEmailIgnoreCase(String email);
+    Student findByEmailIgnoreCase(String email);
 }

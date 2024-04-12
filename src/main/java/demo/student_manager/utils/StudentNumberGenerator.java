@@ -5,6 +5,7 @@ public class StudentNumberGenerator {
     private static int studentCounter = 1;
 
     public static String generateStudentNumber(String firstName, String lastName) {
+        
         // Extract first letter of first name
         String firstLetterFirstName = firstName.substring(0, 1).toUpperCase();
         // Extract first letter of last name
